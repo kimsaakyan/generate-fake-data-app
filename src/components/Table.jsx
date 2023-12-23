@@ -1,5 +1,4 @@
 import React from 'react';
-import addErrorsToData from '../utils/addErrorsToData';
 
 const Table = ({ data, fetchData, errorCount, region }) => {
     const handleTableScroll = (e) => {
@@ -9,8 +8,6 @@ const Table = ({ data, fetchData, errorCount, region }) => {
             fetchData(10);
         }
     };
-
-    let resultData = addErrorsToData(data, errorCount, region);
 
     return (
         <div
@@ -29,7 +26,7 @@ const Table = ({ data, fetchData, errorCount, region }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {resultData.map((item, index) => (
+                    {data.map((item, index) => (
                         <tr key={index}>
                             <td className="border px-4 py-2">{index + 1}</td>
                             <td className="border px-4 py-2">

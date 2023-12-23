@@ -15,21 +15,21 @@ const MyApp = () => {
     const [errorCount, setErrorCount] = useState(0);
     const [data, setData] = useState(
         Array.from({ length: 20 }, (_, index) =>
-            generateFakeData(region, seed + index)
+            generateFakeData(region, seed + index, errorCount)
         )
     );
 
     useEffect(() => {
         setData(
             Array.from({ length: 20 }, (_, index) =>
-                generateFakeData(region, seed + index)
+                generateFakeData(region, seed + index, errorCount)
             )
         );
-    }, [region, seed]);
+    }, [region, seed, errorCount]);
 
     const fetchData = (amountOfData) => {
         const newData = Array.from({ length: amountOfData }, (_, index) =>
-            generateFakeData(region, seed + index)
+            generateFakeData(region, seed + index, errorCount)
         );
 
         setData((prevVal) => [...prevVal, ...newData]);
@@ -57,7 +57,7 @@ const MyApp = () => {
     };
 
     const onClickHandler = () => {
-        let newSeed = generateRandomNumber(seed, currentPage);
+        let newSeed = generateRandomNumber(seed, currentPage, errorCount);
         setSeed(newSeed);
     };
 

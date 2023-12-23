@@ -1,6 +1,7 @@
 import { fakerEN, fakerAR, fakerHY, fakerIT } from '@faker-js/faker';
+import addErrorsToData from './addErrorsToData';
 
-const generateFakeData = (region, seed) => {
+const generateFakeData = (region, seed, errors) => {
     let faker = fakerEN;
 
     switch (region) {
@@ -27,13 +28,15 @@ const generateFakeData = (region, seed) => {
 
     faker.seed(Number(seed));
 
-    return {
+    const person = {
         RandomID: faker.string.uuid(),
         FirstName: faker.person.firstName(),
         LastName: faker.person.lastName(),
         Address: faker.location.streetAddress(),
         PhoneNumber: faker.phone.number(),
     };
+
+    return addErrorsToData(person, errors, region);
 };
 
 export default generateFakeData;
